@@ -1,0 +1,21 @@
+Image processing for shear experiments of cyanobacterial colonies
+
+This routine is used to analyse raw images of aggregation-breakage of cyanobacterial colonies under a cone-and-plate shear
+Raw images are image stacks (.tif) taken with and inverted microscope mounted underneath the cone-and-plate setup
+The image stack is organized into blocks of Ns frames/block. Each block contains a set of images for a single time point. Conversion from slice number to physical time is made by function frame_time()
+The first step is pre-processing of the raw images. Two treatments are made, one to detect small colonies(or single cells) and another to detect large colonies:
+Small colonies: Image is cropped into a smaller section, to speed the processing. The background is subtracted using a reference image. The image intensity is renormalized and then thresholded.
+Large colonies: A gaussian blur is applied to filter small colonies. The background is subtracted using a reference image. The image intensity is renormalized and then thresholded.
+The second step is detection of features. The method skimage.measure is used to detect and measure the features.
+The third step is to count and calculate the size distribution. Size distribution is defined in frequency ( number of colonies/ml per bin in diameter) and mass fraction ( total number of cells in colonies/ml per bin in diameter). Here, the diameter is non-dimensional (divided by a single cell diameter).
+Corrections must be made to the size distribution to account for inaccuracies in the counting process, since not all colonies appear in focus in the image. The first correction is done with a reference suspension with known size distribution. A calibration function is estimated, as defined by function pos_calib ( with factor = 1). This calibration function has low precision at small sizes, due to low image resolution. A second correction is then made for small colonies: the total cell count is assumed to be constant over time, so the pos_calib is used, with the factor being modified so to conserv the total cell count. Finally, another correction function is applied to correct for sample evaporation cali_evap()
+The fourth step is calculation of the statistical descriptors (distribution median, variance).
+In the case of a breakage measurement, the breakage rate is also calculated, being defined as the number of single cells lost by one colony per time.
+Guide on the purpose of the each routine cell:
+Find features: Takes the raw-images, pre-processes them and detect the features. Needs a background image file.
+Calculate distributions: With the detect features list (feaures.csv), calculates the size distribution and statistical descriptors. The final data is stored in the Data folder
+Make background image: Takes a stack of background images (.tiff) and produces a single background file (.csv) to be used.
+Extract frame: Use this to visualize and save single frames ( processed or not ). Needs a background image
+Calibrate threshold: Use this to defined the suitable threshold values. Needs a background image and a image stack with colonies
+Calibrate concentrations: Use this to estimated the first correction function for the counting. Needs a reference sample whose size distribution was characterized with a diferent equipment.
+If you have any questions, please contact me with y.z.sinzato@uva.nl or m.jalaal@uva.nl
