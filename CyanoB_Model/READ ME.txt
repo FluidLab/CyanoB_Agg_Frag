@@ -1,0 +1,5 @@
+This folder contain a script for the numerical model of Aggregation/Fragmentation of cyanobacterial colonies under cone-and-plate shear
+Refer to the article for details on method and data:
+Sinzato et al.(2024) - "How fluid flow affects the fragmentation and aggregation of cyanobacterial colonies"
+The model is based on a Fortran routine using a two-category classes method
+Aditionally, a fitting script in Python compares the numerical model and experimental results and fits the parameters

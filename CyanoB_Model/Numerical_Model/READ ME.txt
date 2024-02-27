@@ -1,0 +1,24 @@
+Research project: Fluid dynamics of aquatic microorganisms
+Code title: Simulation of Microcystis colony formation under turbulent shear
+Author: Yuri Sinzato - PhD Student - University of Amsterdal
+Date (start): 03-08-2022
+Date (current version): 20-06-2023 
+!!!!!!!!!!!!!!!!! 
+	Description:
+!!!!!!!!!!!!!!!!! 
+ Routine to simulate the dynamics of Microcystis colony formation under:
+ - Uniform homogeneous turbulent shear flow carachterized by tubulent dissipation rate epsilon and kinematic viscosity nu
+ - No cell division
+ - Aggregation is also turbulent driven, with a stickness coeficient alpha. Model described in "Burd and Jackson, 2009, Particle Aggregation"
+ - Break-up driven by erosion - Double population model, adapted from Babler 2008
+ - Colony size distribution described by frequency as a function of radius n(r) and mass fraction (mass-weighted distribution n_m(r))
+ - Solution by classes method (discritized distribution function)
+ - Two population kinds: division-formed colonies, with large critical size, and aggregation-formed colonies, with small critical size
+!!!!!!!!!!!!!!!!! 
+	Instructions:
+!!!!!!!!!!!!!!!!! 
+ - Open a Linux shell in main folder and compile .f90 code with command :  gfortran Numerical_Model/agg_bre.f90 -o Numerical_Model/agg_bre.exe -g -fcheck=all
+ - Give parameters in the text file 'Temporary/parameters.txt'
+ - Give initial size distribution in the text file 'Temporary/csd_initial.txt'
+ - Run executable 'agg_bre.exe' in WSL Ubuntu terminal
+ - Results are writen in 'Temporary/csd_data.txt' and 'Temporary/r_data.txt'

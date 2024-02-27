@@ -1,0 +1,52 @@
+# Fit for breakage data
+Penalty function accounts only for errors of large colonies
+Single set of parameters for all data set
+Small colonies parameters from separate fit, using only aggregation data
+
+Final results:
+Folder: Bre_100s_c1e6_23-11-22/Data/
+penalty_function:2.0556898055954704
+Folder: Bre_500s_c1e6_15-3-2/Data/
+penalty_function:3.3493889152679586
+Folder: Bre_1000s_c1e6_11-1-23/Data/
+penalty_function:3.6122600362047894
+Folder: Bre_1200s_c1e6_1-5-23/Data/
+penalty_function:3.7303290605067816
+Total penalty function: 12.747667817575
+Fitting parameters: [2.44200000e-02 4.28100000e-02 5.43597852e+01 2.69700000e+00
+ 3.04903564e+00]
+
+# Initial
+alpha_i =   2.442e-02   # Stickiness
+ep_s1_i =  4.281e-02 # Critical dissipation energy small colonies
+ep_s2_i = 3.39500e+01  # Critical dissipation energy large colonies
+q1_i = 2.697e+00  # Exponent of critical size for small colonies
+q2_i = 4.89375e+00  # Exponent of critical size for large colonies
+f
+
+Parameters used in simulation
+
+# Physical parameters
+mu = 0.0e-4 # Growth rate
+d_f = 2.09 # 3-D fractal dimension
+nu = 1.002e-6 # Kinematic viscosity
+
+# Binning parameters - Exp
+N_t_fit = 13 ## Time points to use in fit
+h_r_exp = 0.5 ## Bin size for experimental data
+N_r_exp = 400 ## Number of bins for experimental data
+
+# Binning parameters - Num
+R_a = 10.0 # Range aggregative bins
+R_r = 60.0 # Range of total bins - Should be at least twice the aggregative range
+h_r = 1.0 # Bin size for numerical model
+N_a = (np.ceil(R_a/h_r)).astype(int) # Number of aggregative bins
+N_r = (np.ceil(R_r/h_r)).astype(int)  # Total number of bins
+
+# Numerical routine parameters 
+t_exp = 4000 # Simulation time
+N_tmax = 1000000 # Maximum number of time steps in simulation
+Dt_i = 1000 # Initial time step (non-dimensional)
+Dt_l = 1 # Minimum time step (non-dimensional)
+Dt_u = 1e5 # Maximum time step (non-dimensional)
+tol_csd = 1.0e-3 # Tolerance for mass distribution
